@@ -1,0 +1,18 @@
+services:
+
+  incident-app:
+
+    build: .
+
+    container_name: incident-app
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - incident-data:/app/app/database
+
+    restart: unless-stopped
+
+volumes:
+  incident-data:
