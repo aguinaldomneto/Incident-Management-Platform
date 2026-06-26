@@ -1,5 +1,7 @@
 const db = require('../database/database');
 
+const logger = require('../logs/logger');
+
 const getIncidentById = (req, res) => {
 
   const { id } = req.params;
@@ -80,7 +82,13 @@ const createIncident = (req, res) => {
         message: 'Incidente criado com sucesso',
         incident_id: this.lastID
       });
-
+      logger.info({
+	action: 'incident_created',
+	incident_id: this.lastID,
+	system_name,
+	severity,
+	description
+	});
     }
   );
 
